@@ -16,8 +16,14 @@
     <td>{{ $about->details }}</td>
     <td><img src="{{ asset('upload/about_images/'.$about->image) }}" alt="" width="100"></td>
     <td>
-      <a href="#">Edit</a>
-      <a href="{{ route('about.delete', $about->id) }}">Delete</a>
+      <a href="{{ route('about.edit', $about->id) }}">Edit</a>
+      <form action="{{ route('about.delete', $about->id) }}" method="POST">
+
+        @csrf
+        @method('DELETE')
+        <button type="submit">Delete</button>
+      </form>
+     
     </td>
   </tr>
   @endforeach
